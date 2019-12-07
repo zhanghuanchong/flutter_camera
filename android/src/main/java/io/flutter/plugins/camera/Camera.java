@@ -328,8 +328,7 @@ public class Camera {
               cameraCaptureSession = session;
               captureRequestBuilder.set(
                   CaptureRequest.CONTROL_MODE, CameraMetadata.CONTROL_MODE_AUTO);
-              setScalerCropRegion(captureRequestBuilder, zoom);
-              cameraCaptureSession.setRepeatingRequest(captureRequestBuilder.build(), null, null);
+              zoom(0);
               if (onSuccessCallback != null) {
                 onSuccessCallback.run();
               }
