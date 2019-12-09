@@ -911,7 +911,7 @@ FourCharCode const videoFormat = kCVPixelFormatType_32BGRA;
     NSError *error = nil;
     [_camera.captureDevice lockForConfiguration:&error];
     if (error) {
-      result([error flutterError]);
+      result(getFlutterError(error));
     } else {
       if ([_camera.captureDevice isFocusPointOfInterestSupported]) {
         _camera.captureDevice.focusPointOfInterest =
