@@ -155,7 +155,12 @@ final class MethodCallHandlerImpl implements MethodChannel.MethodCallHandler {
         }
       case "setPointOfInterest":
         {
-          result.notImplemented();
+          try {
+            camera.setPointOfInterest(call.argument("x"), call.argument("y"));
+            result.success(null);
+          } catch (Exception e) {
+            handleException(e, result);
+          }
           break;
         }
       case "dispose":
