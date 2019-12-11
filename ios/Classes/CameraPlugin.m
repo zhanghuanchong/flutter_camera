@@ -206,7 +206,7 @@ static ResolutionPreset getResolutionPresetForString(NSString *preset) {
 - (void)startImageStreamWithMessenger:(NSObject<FlutterBinaryMessenger> *)messenger;
 - (void)stopImageStream;
 - (void)captureToFile:(NSString *)filename result:(FlutterResult)result;
-- (void)zoom:(NSUInteger *)step;
+- (void)zoom:(int)step;
 @end
 
 @implementation FLTCam {
@@ -276,7 +276,7 @@ FourCharCode const videoFormat = kCVPixelFormatType_32BGRA;
   [_captureSession stopRunning];
 }
 
-- (void)zoom:(NSUInteger *)step {
+- (void)zoom:(int)step {
   _zoom += step;
 
   if (_zoom < 1) {
@@ -895,7 +895,7 @@ FourCharCode const videoFormat = kCVPixelFormatType_32BGRA;
     [_camera zoom:-1];
     result(nil);
   } else if ([@"zoom" isEqualToString:call.method]) {
-    NSUInteger step = ((NSNumber *)call.arguments[@"step"]).unsignedIntegerValue;
+    int step = ((NSNumber *)call.arguments[@"step"]).integerValue;
     [_camera zoom:step];
     result(nil);
   } else if ([@"pauseVideoRecording" isEqualToString:call.method]) {
